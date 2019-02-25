@@ -26,6 +26,6 @@ target 'reactnativechatusingfirebase' do
   pod 'Fabric', '~> 1.7.13'
   pod 'Crashlytics', '~> 3.10.9'
 
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler/ios'
 
 end
