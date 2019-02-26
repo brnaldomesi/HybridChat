@@ -6,7 +6,6 @@ import { Header } from 'react-native-elements';
 
 let _this = null;
 var user;
-var name;
 export default class Main extends React.Component {
     state = { currentUser: null }
     componentDidMount() {
@@ -30,11 +29,11 @@ export default class Main extends React.Component {
 
     render() {
         const { navigation } = this.props;
-        name = navigation.getParam('name', 'NO-Name');
+        const name = navigation.getParam('name', 'NO-Name');
         return (
 
             <View style={styles.container}>
-                <Text  style={styles.text}> Please go ahead and joind one of the below Chat</Text>
+                <Text  style={styles.text}> Please go ahead and joind one the below Chat</Text>
                 <Button
                     onPress={() => _this.gotoChatUsersPage()}
                     title="One to One Chat"
@@ -63,7 +62,7 @@ export default class Main extends React.Component {
     }
 
     gotoGroupUsersPage() {
-        this.props.navigation.navigate('Chat', {uid: user.uid, name: name});
+        this.props.navigation.navigate('Chat');
     }
 }
 

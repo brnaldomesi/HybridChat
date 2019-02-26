@@ -63,7 +63,7 @@ export default class Main extends React.Component {
     }
 
     gotoGroupUsersPage() {
-        this.props.navigation.navigate('Chat', {uid: user.uid, name: name});
+        this.props.navigation.navigate('ChatGroups', {uid: user.uid, name: name});
     }
 }
 

@@ -2,9 +2,9 @@ import React from 'react'
 import { View, ActivityIndicator, StyleSheet } from 'react-native'
 import firebase from 'react-native-firebase'
 import { ListItem, Text } from 'react-native-elements'
-var user;
 
 export default class ChatUsers extends React.Component {
+
     state = { currentUsers: [] }
 
     static navigationOptions = ({ navigation }) => {
@@ -15,17 +15,15 @@ export default class ChatUsers extends React.Component {
     };
 
     componentDidMount() {
-        const { navigation } = this.props;
-        const uid = navigation.getParam('uid');
-        user = firebase.auth().currentUser;
-        console.log('uid---', uid);
+        var user = firebase.auth().currentUser;
+
         firebase.database().ref(`/profile`).on('value', (snapshot) => {
             let list = snapshot.val();
             console.log('Data', snapshot.val());
             const message_array = [];
 
             snapshot.forEach((childSnapshot) => {
-                if (childSnapshot.key != uid) {
+                if (childSnapshot.val().email != user.email) {
                     message_array.push({
                         id: childSnapshot.key,
                         ...childSnapshot.val()
@@ -49,9 +47,9 @@ export default class ChatUsers extends React.Component {
                             chevronColor="black"
                             chevron
                             onPress={() => this.props.navigation.navigate('OneToOneChat', {
-                                name: list.credentials.fullName,
-                                email: user.email,
-                                uid: list.id
+                                name: list.credentials.fullName, name: name,
+                                email: list.credentials.email,
+                                uid: list.credentials.uid
                             })}
                         />
                     ))

@@ -51,7 +51,7 @@ export default class ChatUsers extends React.Component {
                             onPress={() => this.props.navigation.navigate('OneToOneChat', {
                                 name: list.credentials.fullName,
                                 email: user.email,
-                                uid: list.id
+                                uid: list.uid
                             })}
                         />
                     ))

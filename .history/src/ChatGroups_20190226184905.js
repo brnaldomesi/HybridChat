@@ -2,11 +2,10 @@ import React from 'react'
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 import firebase from 'react-native-firebase'
 import DialogInput from 'react-native-dialog-input';
-import { Button, ListItem } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 let _this = null;
 var uid;
-var name;
 export default class ChatGroups extends React.Component {
     state = { isDialogVisible: false, currentGroups: [] }
 
@@ -29,7 +28,6 @@ export default class ChatGroups extends React.Component {
         _this = this;
         const { navigation } = this.props;
         uid = navigation.getParam('uid');
-        name = navigation.getParam('name');
         firebase.database().ref(`/groups`).on('value', (snapshot) => {
             let list = snapshot.val();
             console.log('Data', snapshot.val());
@@ -48,7 +46,7 @@ export default class ChatGroups extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <DialogInput isDialogVisible={this.state.isDialogVisible}
                     title={"New Group Creation"}
                     message={"Please Enter Your Group Name"}
@@ -66,8 +64,7 @@ export default class ChatGroups extends React.Component {
                             chevron
                             onPress={() => this.props.navigation.navigate('Chat', {
                                 name: list.groupName,
-                                uid: uid,
-                                userName: name
+                                uid: uid
                             })}
                         />
                     ))

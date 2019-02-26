@@ -2,13 +2,12 @@ import React from 'react'
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 import firebase from 'react-native-firebase'
 import DialogInput from 'react-native-dialog-input';
-import { Button, ListItem } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 let _this = null;
 var uid;
-var name;
 export default class ChatGroups extends React.Component {
-    state = { isDialogVisible: false, currentGroups: [] }
+    state = { isDialogVisible: false }
 
     static navigationOptions = ({ navigation }) => {
         console.log(navigation);
@@ -29,26 +28,11 @@ export default class ChatGroups extends React.Component {
         _this = this;
         const { navigation } = this.props;
         uid = navigation.getParam('uid');
-        name = navigation.getParam('name');
-        firebase.database().ref(`/groups`).on('value', (snapshot) => {
-            let list = snapshot.val();
-            console.log('Data', snapshot.val());
-            const message_array = [];
-
-            snapshot.forEach((childSnapshot) => {
-                message_array.push({
-                    id: childSnapshot.key,
-                    ...childSnapshot.val()
-                });
-                console.log('groupList', message_array);
-            });
-            this.setState({ currentGroups: message_array });
-        });
     }
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <DialogInput isDialogVisible={this.state.isDialogVisible}
                     title={"New Group Creation"}
                     message={"Please Enter Your Group Name"}
@@ -56,22 +40,6 @@ export default class ChatGroups extends React.Component {
                     submitInput={(inputText) => { this.sendInput(inputText) }}
                     closeDialog={() => { this.showDialog(false) }}>
                 </DialogInput>
-                {
-                    this.state.currentGroups.map((list) => (
-                        <ListItem
-                            key={list.id}
-                            leftAvatar={{ source: { uri: list.pic } }}
-                            title={list.groupName}
-                            chevronColor="black"
-                            chevron
-                            onPress={() => this.props.navigation.navigate('Chat', {
-                                name: list.groupName,
-                                uid: uid,
-                                userName: name
-                            })}
-                        />
-                    ))
-                }
             </View>
         )
     }
@@ -83,10 +51,9 @@ export default class ChatGroups extends React.Component {
     sendInput(groupName) {
         console.log('groupName', groupName);
         this.setState({ isDialogVisible: false });
-        let pic = 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg'
+        console.log('credentials', credentials);
         firebase.database().ref(`groups/${uid}`).set({
-            groupName,
-            pic
+            groupName
         }).then((data) => {
             //success callback
             console.log('Response.... ', data);

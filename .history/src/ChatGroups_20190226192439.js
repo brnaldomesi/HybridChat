@@ -66,8 +66,7 @@ export default class ChatGroups extends React.Component {
                             chevron
                             onPress={() => this.props.navigation.navigate('Chat', {
                                 name: list.groupName,
-                                uid: uid,
-                                userName: name
+                                uid: uid
                             })}
                         />
                     ))

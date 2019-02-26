@@ -15,17 +15,15 @@ export default class ChatUsers extends React.Component {
     };
 
     componentDidMount() {
-        const { navigation } = this.props;
-        const uid = navigation.getParam('uid');
         user = firebase.auth().currentUser;
-        console.log('uid---', uid);
+
         firebase.database().ref(`/profile`).on('value', (snapshot) => {
             let list = snapshot.val();
             console.log('Data', snapshot.val());
             const message_array = [];
 
             snapshot.forEach((childSnapshot) => {
-                if (childSnapshot.key != uid) {
+                if (childSnapshot.val().id != user.uid) {
                     message_array.push({
                         id: childSnapshot.key,
                         ...childSnapshot.val()
@@ -51,7 +49,7 @@ export default class ChatUsers extends React.Component {
                             onPress={() => this.props.navigation.navigate('OneToOneChat', {
                                 name: list.credentials.fullName,
                                 email: user.email,
-                                uid: list.id
+                                uid: list.uid
                             })}
                         />
                     ))
