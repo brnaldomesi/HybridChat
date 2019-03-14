@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>922744433349-b2thk9du0qslfqg0u9mqe3qa2t5c88hs.apps.googleusercontent.com</string>
+	<string>922744433349-6c5u6eu50mfmk82mmhhr6tnvu3o2v0vs.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.922744433349-b2thk9du0qslfqg0u9mqe3qa2t5c88hs</string>
+	<string>com.googleusercontent.apps.922744433349-6c5u6eu50mfmk82mmhhr6tnvu3o2v0vs</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCP5HPcuNqoI1G3fpqe3kh81-Iuz3BMgGI</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.purelogics.reactnativechatusingfirebase</string>
+	<string>com.purelogics.chat</string>
 	<key>PROJECT_ID</key>
 	<string>chat-with-react-native</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:922744433349:ios:639b754c192851cc</string>
+	<string>1:922744433349:ios:9e2af7ca511106f1</string>
 	<key>DATABASE_URL</key>
 	<string>https://chat-with-react-native.firebaseio.com</string>
 </dict>

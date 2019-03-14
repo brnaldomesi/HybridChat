@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:922744433349:android:639b754c192851cc",
+        "mobilesdk_app_id": "1:922744433349:android:9e2af7ca511106f1",
         "android_client_info": {
-          "package_name": "com.purelogics.reactnativechatusingfirebase"
+          "package_name": "com.purelogics.chat"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "922744433349-l267q9cjsld34squ1efmctegngseoqst.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.purelogics.reactnativechatusingfirebase",
-            "certificate_hash": "4b3eaf892730d3b82163aa2889e4dae9671e6285"
-          }
-        },
         {
           "client_id": "922744433349-iss3psqfetcjbq37dsk5fo2g1ese6k67.apps.googleusercontent.com",
           "client_type": 3
@@ -37,20 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "922744433349-iss3psqfetcjbq37dsk5fo2g1ese6k67.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "922744433349-b2thk9du0qslfqg0u9mqe3qa2t5c88hs.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.purelogics.reactnativechatusingfirebase"
-              }
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

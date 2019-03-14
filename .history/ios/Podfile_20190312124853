@@ -1,0 +1,33 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'reactnativechatusingfirebase' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for reactnativechatusingfirebase
+
+  target 'reactnativechatusingfirebase-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'reactnativechatusingfirebaseTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'reactnativechatusingfirebase-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for reactnativechatusingfirebase-tvOS
+
+  # target 'reactnativechatusingfirebase-tvOSTests' do
+  #   inherit! :search_paths
+    # Pods for testing
+  end
+
+end
