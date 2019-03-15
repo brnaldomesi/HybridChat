@@ -1,15 +1,13 @@
 import React from 'react';
 import { GiftedChat } from 'react-native-gifted-chat'; // 0.3.0
 import firebase from 'react-native-firebase'
-import ImagePicker from 'react-native-image-picker';
-import RNFetchBlob from 'react-native-fetch-blob'
-import { Icon } from 'react-native-elements'
+import { Button } from 'react-native-elements';
 
 import {
   Dimensions,
   Image,
   StyleSheet,
-  Modal, Text, TouchableHighlight, View, Alert, Platform,
+  Modal, Text, TouchableHighlight, View, Alert,
   TouchableOpacity,
 } from 'react-native'
 
@@ -17,8 +15,6 @@ type Props = {
   name?: string,
 };
 var gid;
-
-let _this = null;
 
 class Chat extends React.Component<Props> {
 
@@ -28,11 +24,11 @@ class Chat extends React.Component<Props> {
       title: (navigation.state.params || {}).name || 'Chat!',
       headerRight: (
         <Icon
-          raised
-          name='image'
-          type='font-awesome'
-          color='#f50'
-          onPress={() => _this.getImage()} />
+        raised
+        name='image'
+        type='font-awesome'
+        color='#f50'
+        onPress={() => console.log('hello')} />
       ),
     };
   };
@@ -40,9 +36,7 @@ class Chat extends React.Component<Props> {
   state = {
     messages: [],
     img: false,
-    userInfo: '',
-    pic: '',
-    data: 'some things'
+    userInfo: ''
   };
 
   get user() {
@@ -83,7 +77,6 @@ class Chat extends React.Component<Props> {
     this.setState({ img: false });
   }
   componentDidMount() {
-    _this = this;
     const { navigation } = this.props;
     gid = navigation.getParam('gid', '');
     this.on(message =>
@@ -153,81 +146,6 @@ class Chat extends React.Component<Props> {
   // close the connection to the Backend
   off() {
     this.ref.off();
-  }
-
-
-  getImage() {
-    // More info on all the options is below in the API Reference... just some common use cases shown here
-    const options = {
-      title: 'Select Image',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-
-    /**
-     * The first arg is the options object for customization (it can also be null or omitted for default options),
-     * The second arg is the callback which sends object: response (more info in the API Reference)
-     */
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response, response.uri);
-      this.setState({ data: null });
-      // this.uploadImage(response.uri, 'image/jpeg', 'Profile Image');
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        //const source = { uri: response.uri };
-
-        // You can also display the image using data:
-        const source = 'data:image/jpeg;base64,' + response.data;
-
-        this.setState({
-          pic: source,
-        });
-      }
-    });
-  }
-
-  uploadImage(uri, mime = 'image/jpeg', name) {
-    return new Promise((resolve, reject) => {
-      let imgUri = uri; let uploadBlob = null;
-      const uploadUri = Platform.OS === 'ios' ? imgUri.replace('file://', '') : imgUri;
-      const imageRef = firebase.storage().ref('userProfile').child(this.generateImageId())
-
-      fs.readFile(uploadUri, 'base64')
-        .then(data => {
-          return Blob.build(data, { type: `${mime};BASE64` });
-        })
-        .then(blob => {
-          uploadBlob = blob;
-          // return imageRef.put(blob, { contentType: mime, name: name });
-          return imageRef.put(uri, { contentType: mime });
-        })
-        .then(() => {
-          uploadBlob.close()
-          return imageRef.getDownloadURL();
-        })
-        .then(url => {
-          this.setState({ data: 'data' });
-          this.setState({ pic: url });
-          resolve(url);
-        })
-        .catch(error => {
-          this.setState({ data: 'data' });
-          reject(error)
-        })
-    })
-  }
-
-  generateImageId() {
-    const timestamp = new Date();
-    const { currentUser } = firebase.auth();
-    return `${currentUser.uid}-${new Date(timestamp).getTime()}`;
   }
 }
 
